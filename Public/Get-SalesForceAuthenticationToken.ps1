@@ -76,6 +76,10 @@
             $requestBody += ('&username={0}' -f $username)
             $requestBody += ('&password={0}{1}' -f $password, $UserToken)
         }
+        Default
+        {
+            Throw 'Grant Type Invalid'
+        }
     }
 
     Write-Verbose $requestBody
