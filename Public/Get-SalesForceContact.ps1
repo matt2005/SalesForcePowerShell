@@ -45,10 +45,11 @@
     {
         Throw 'access_token Missing from Token'
     }
-    $URI = $Token.instance_url+'/services/data/v20.0/sobjects/Contact/'+$Contact.ContactID
-    $method = 'GET'
-    $Output = Invoke-RestMethod -Uri $URI -Method $method -Headers @{
-        'Authorization' = 'OAuth ' + $Token.access_token
+    $InvokeSalesForceAPIParams = @{
+        Token       = $Token
+        APIURI      = '/services/data/v20.0/sobjects/Contact/'+$Contact.ContactID
+        APICALLType = 'Get'
     }
+    $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
     return $Output
 }

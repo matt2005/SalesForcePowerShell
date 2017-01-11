@@ -33,7 +33,8 @@
         [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains FirstName, LastName, ContactID as a minimum')][Hashtable]$Contact,
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
     )
-    If (-not ($Contact.ContactID))
+    $Body = $Contact.Clone()
+    If (-not ($Body.ContactID))
     {
         Throw 'Contact ID missing from Contact hashtable'
     }
@@ -45,14 +46,12 @@
     {
         Throw 'access_token Missing from Token'
     }
-    $URI = $Token.instance_url+'/services/data/v20.0/sobjects/Contact/'+$Contact.ContactID
-    $Body = $Contact.Clone()
-    $Body.Remove('ContactId')
-    $method = 'PATCH'
-    $contenttype = 'application/json'
-    $body2 = $Body | ConvertTo-Json
-    $null = Invoke-RestMethod -Uri $URI -ContentType $contenttype -Method $method  -Body $body2 -Headers @{
-        'Authorization' = 'OAuth ' + $Token.access_token
+    $InvokeSalesForceAPIParams = @{
+        Token       = $Token
+        APIURI      = '/services/data/v20.0/sobjects/Contact/'+$Body.ContactID
+        APICALLType = 'Update'
+        Body        = $Body
     }
-    return $Contact
+    $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
+    return $Output
 }

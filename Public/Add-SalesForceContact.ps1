@@ -32,19 +32,24 @@
         [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains FirstName, LastName, AccountID as a minimum')][Hashtable]$Contact,
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
     )
-    If (-not ($Contact.AccountID))
+    $Body = $Contact.Clone()
+    If (-not ($Body.AccountID))
     {
         Throw 'AccountID missing from Contact hashtable'
     }
-    If (-not ($Contact.FirstName))
+    If (-not ($Body.FirstName))
     {
         Throw 'FirstName missing from Contact hashtable'
     }
-    If (-not ($Contact.LastName))
+    If (-not ($Body.LastName))
     {
         Throw 'LastName missing from Contact hashtable'
     }
-    If (-not ($Token.instance_url))
+    If (-not ($Body.ContactID))
+    {
+        Throw 'Contact ID included in Contact hashtable'
+    }
+    If (-not ($Body.instance_url))
     {
         Throw 'instance_url Missing from Token'
     }
@@ -52,13 +57,13 @@
     {
         Throw 'access_token Missing from Token'
     }
-    $URI = $Token.instance_url+'/services/data/v20.0/sobjects/Contact/'
-    $Body = $Contact.Clone()
-    $method = 'POST'
-    $contenttype = 'application/json'
-    $body2 = $Body | ConvertTo-Json
-    $Contact['ContactId'] = (Invoke-RestMethod -Uri $URI -ContentType $contenttype -Method $method  -Body $body2 -Headers @{
-            'Authorization' = 'OAuth ' + $Token.access_token
-    }).id
+    
+    $InvokeSalesForceAPIParams = @{
+        Token       = $Token
+        APIURI      = '/services/data/v20.0/sobjects/Contact/'
+        APICALLType = 'Add'
+        Body        = $Body
+    }
+    $Contact['ContactId'] = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).id
     return $Contact
 }
