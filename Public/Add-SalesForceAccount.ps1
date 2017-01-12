@@ -37,7 +37,7 @@
     {
         Throw 'Name missing from Account hashtable'
     }
-    If (-not ($Body.instance_url))
+    If (-not ($Token.instance_url))
     {
         Throw 'instance_url Missing from Token'
     }
