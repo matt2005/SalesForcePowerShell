@@ -51,5 +51,6 @@
         APICALLType = 'Get'
     }
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
+    $Output.PSObject.TypeNames.Insert(0,'SalesForce.Account')
     return $Output
 }

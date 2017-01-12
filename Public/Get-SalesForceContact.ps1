@@ -28,7 +28,6 @@
             Outputs the Contact details
     #>
 
-
     param(
         [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains ContactID as a minimum')][Hashtable]$Contact,
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
@@ -51,5 +50,6 @@
         APICALLType = 'Get'
     }
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
+    $Output.PSObject.TypeNames.Insert(0,'SalesForce.Contact')
     return $Output
 }
