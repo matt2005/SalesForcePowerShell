@@ -33,7 +33,7 @@
         [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains AccountID as a minimum')][Hashtable]$Account,
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
     )
-    If (-not ($Account.AccointID))
+    If (-not ($Account.AccountID))
     {
         Throw 'Account ID missing from Account hashtable'
     }
