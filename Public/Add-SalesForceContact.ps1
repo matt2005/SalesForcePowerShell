@@ -45,7 +45,7 @@
     {
         Throw 'LastName missing from Contact hashtable'
     }
-    If (-not ($Body.ContactID))
+    If ($Body.ContactID)
     {
         Throw 'Contact ID included in Contact hashtable'
     }
