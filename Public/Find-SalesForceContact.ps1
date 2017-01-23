@@ -50,13 +50,17 @@
   }
   Foreach ($Key in $Contact.Keys)
   {
+  $KeyValue = $Contact.$Key
+  #Set SOQL EscapeCharacters in Value if they exist
+  $KeyValue=Set-SOQLEscapeCharacters -Value $KeyValue
+
     IF (-not($InvokeSalesForceAPIParams.APIURI)) 
     {
-      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v20.0/query/?q=SELECT FirstName,LastName,ID,AccountID from Contact Where {0} in (''{1}'')' -f $Key, $($Contact.$Key))
+      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v20.0/query/?q=SELECT FirstName,LastName,ID,AccountID from Contact Where {0} in (''{1}'')' -f $Key, $KeyValue)
     }
     Else 
     {
-      $InvokeSalesForceAPIParams.APIURI      = ('{0} and {1} in (''{2}'')' -f ($InvokeSalesForceAPIParams.APIURI), $Key, $($Contact.$Key))
+      $InvokeSalesForceAPIParams.APIURI      = ('{0} and {1} in (''{2}'')' -f ($InvokeSalesForceAPIParams.APIURI), $Key,$KeyValue)
     }
   }
   $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).records

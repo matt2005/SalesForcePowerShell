@@ -56,16 +56,18 @@ Function Invoke-SalesForceAPI
         {
             $InvokeParams['Method'] = 'POST'
             $InvokeParams['ContentType'] = 'application/json'
-            $InvokeParams['Body'] = $Body | ConvertTo-Json
+            $JSONBody=$Body | ConvertTo-Json
+            $InvokeParams['Body'] = ([System.Text.Encoding]::UTF8.GetBytes($JSONBody))
         }
         Update 
         {
             $InvokeParams['Method'] = 'PATCH'
             $InvokeParams['ContentType'] = 'application/json'
-            $InvokeParams['Body'] = $Body | ConvertTo-Json
+            $JSONBody=$Body | ConvertTo-Json
+            $InvokeParams['Body'] = ([System.Text.Encoding]::UTF8.GetBytes($JSONBody))
         }
     }
-            
+    IF ($JSONBody){Write-Verbose ('Body Contains: {0}' -f $JSONBody) }
     $Output = Invoke-RestMethod @InvokeParams
     return $Output
 }
