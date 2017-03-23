@@ -1,5 +1,5 @@
-﻿function Get-SalesForceAccount 
-{
+﻿function Get-SalesForceAccount {
+
     <#
             .SYNOPSIS
             Gets Existing SalesForce Account 
@@ -53,4 +53,6 @@
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
     $Output.PSObject.TypeNames.Insert(0,'SalesForce.Account')
     return $Output
+
 }
+

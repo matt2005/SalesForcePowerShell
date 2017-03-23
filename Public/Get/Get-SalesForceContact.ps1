@@ -1,5 +1,5 @@
-﻿function Get-SalesForceContact 
-{
+﻿function Get-SalesForceContact {
+
     <#
             .SYNOPSIS
             Gets Existing SalesForce Contact 
@@ -52,4 +52,6 @@
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
     $Output.PSObject.TypeNames.Insert(0,'SalesForce.Contact')
     return $Output
+
 }
+

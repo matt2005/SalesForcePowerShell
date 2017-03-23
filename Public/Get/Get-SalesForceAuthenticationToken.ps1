@@ -1,5 +1,5 @@
-﻿Function Get-SalesForceAuthenticationToken
-{
+﻿function Get-SalesForceAuthenticationToken {
+
     <#
             .SYNOPSIS
             Generate SalesForce Authentication Token
@@ -85,4 +85,6 @@
     Write-Verbose $requestBody
     $Token = Invoke-RestMethod -Method Post -Uri $Uri -Body $requestBody
     Return $Token
+
 }
+

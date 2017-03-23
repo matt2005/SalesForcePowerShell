@@ -1,5 +1,5 @@
-﻿function Find-SalesForceContact 
-{
+﻿function Find-SalesForceContact {
+
   <#
       .SYNOPSIS
       Find an Existing SalesForce Contact 
@@ -66,4 +66,6 @@
   $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).records
   $Output.PSObject.TypeNames.Insert(0,'SalesForce.Contact')
   return $Output
+
 }
+

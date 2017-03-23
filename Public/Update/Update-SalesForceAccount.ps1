@@ -1,5 +1,5 @@
-﻿function Update-SalesForceAccount 
-{
+﻿function Update-SalesForceAccount {
+
     <#
             .SYNOPSIS
             Update an Existing SalesForce Account 
@@ -29,6 +29,7 @@
     #>
 
 
+  [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions","", Scope="Function",Target="")]
     param(
         [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains Name, AccountID as a minimum')][Hashtable]$Account,
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
@@ -55,4 +56,6 @@
     }
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)
     return $Output
+
 }
+

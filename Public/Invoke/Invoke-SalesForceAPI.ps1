@@ -1,6 +1,5 @@
-﻿#requires -Version 3.0
-Function Invoke-SalesForceAPI
-{
+﻿function Invoke-SalesForceAPI {
+
     <#
         .SYNOPSIS
         Invoke the SalesForce REST API
@@ -33,7 +32,7 @@ Function Invoke-SalesForceAPI
         .OUTPUTS
     #>
 
-
+  [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments","", Scope="Function",Target="")]
     Param(
         [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token,
         [parameter(Mandatory,HelpMessage = 'This expects a salesforce api URI e.g. /services/data/v20.0/sobjects/Contact/')][String]$APIURI,
@@ -70,4 +69,6 @@ Function Invoke-SalesForceAPI
     IF ($JSONBody){Write-Verbose ('Body Contains: {0}' -f $JSONBody) }
     $Output = Invoke-RestMethod @InvokeParams
     return $Output
+
 }
+

@@ -1,5 +1,5 @@
-﻿function Add-SalesForceAccount 
-{
+﻿function Add-SalesForceAccount {
+
     <#
             .SYNOPSIS
             Add the New SalesForce Account
@@ -54,4 +54,6 @@
     }
     $Account['AccountId'] = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).id
     return $Account
+
 }
+

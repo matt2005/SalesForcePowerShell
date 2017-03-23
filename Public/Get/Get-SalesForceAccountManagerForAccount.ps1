@@ -1,5 +1,5 @@
-﻿Function Get-SalesForceAccountManagerForAccount 
-{
+﻿function Get-SalesForceAccountManagerForAccount {
+
   <#
     .SYNOPSIS
     Get the Account manager for a SalesForce Account
@@ -32,4 +32,6 @@
   $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v20.0/query/?q=Select Id from AccountTeamMember where AccountID in (''{0}'') and TeamMemberRole in (''{1}'')' -f $AccountID, 'Account Manager')
   $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).records.id
   return $Output
+
 }
+

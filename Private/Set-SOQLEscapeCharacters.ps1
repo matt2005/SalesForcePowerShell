@@ -1,5 +1,5 @@
-﻿Function Set-SOQLEscapeCharacters 
-{
+﻿function Set-SOQLEscapeCharacters {
+
   <#
     .SYNOPSIS
     Escapes SOQL reserved Characters
@@ -28,7 +28,8 @@
     String with correctly escaped Characters
   #>
 
-
+  [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns","", Scope="Function",Target="")]
+  [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions","", Scope="Function",Target="")]
   param ([parameter(Mandatory,HelpMessage='String to parse')][string]$Value)
   #region Remove Escaped Characters, this is done to ensure that the String in not partially escaped
   If ($Value -like '*\\*'){ $Value = $Value.Replace('\\','\')}
@@ -47,4 +48,6 @@
   }
   #endregion
   return $Value
+
 }
+

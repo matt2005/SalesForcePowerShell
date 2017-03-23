@@ -1,5 +1,5 @@
-﻿function Add-SalesForceContact 
-{
+﻿function Add-SalesForceContact {
+
     <#
             .SYNOPSIS
             Add the New SalesForceContact to a specified AccountID
@@ -66,4 +66,6 @@
     }
     $Contact['ContactId'] = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams).id
     return $Contact
+
 }
+
