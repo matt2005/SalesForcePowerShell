@@ -1,4 +1,4 @@
-﻿$CurrentModulePath=Resolve-Path ($PSScriptRoot + '\..\..\..')
+﻿$CurrentModulePath=Resolve-Path ($PSScriptRoot + '\..\..')
 Import-Module -Name $CurrentModulePath -Force
 $Function=Get-Command Set-SOQLEscapeCharacters
 Describe "$($function.Name) Tests" {
