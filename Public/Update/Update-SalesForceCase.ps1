@@ -50,7 +50,7 @@
     $Body.Remove('CaseID') # Remove CaseID from hashtable as it cannot be included in Body.
     $InvokeSalesForceAPIParams = @{
         Token       = $Token
-        APIURI      = '/services/data/v20.0/sobjects/Case/'+$Case.CaseID
+        APIURI      = '/services/data/v54.0/sobjects/Case/'+$Case.CaseID
         APICALLType = 'Update'
         Body        = $Body
     }

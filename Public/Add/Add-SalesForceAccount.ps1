@@ -48,7 +48,7 @@
     
     $InvokeSalesForceAPIParams = @{
         Token       = $Token
-        APIURI      = '/services/data/v20.0/sobjects/Account/'
+        APIURI      = '/services/data/v54.0/sobjects/Account/'
         APICALLType = 'Add'
         Body        = $Body
     }

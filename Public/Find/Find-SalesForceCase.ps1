@@ -56,7 +56,7 @@
 
     IF (-not($InvokeSalesForceAPIParams.APIURI)) 
     {
-      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v20.0/query/?q=SELECT Subject,Description,Status,CaseNumber,ID,contactID from Case Where {0} in (''{1}'')' -f $Key, $KeyValue)
+      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v54.0/query/?q=SELECT Subject,Description,Status,CaseNumber,ID,contactID from Case Where {0} in (''{1}'')' -f $Key, $KeyValue)
     }
     Else 
     {

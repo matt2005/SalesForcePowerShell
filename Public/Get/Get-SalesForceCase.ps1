@@ -46,7 +46,7 @@
     }
     $InvokeSalesForceAPIParams = @{
         Token       = $Token
-        APIURI      = '/services/data/v20.0/sobjects/Case/'+$Case.CaseID
+        APIURI      = '/services/data/v54.0/sobjects/Case/'+$Case.CaseID
         APICALLType = 'Get'
     }
     $Output = (Invoke-SalesForceAPI @InvokeSalesForceAPIParams)

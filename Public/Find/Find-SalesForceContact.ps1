@@ -32,10 +32,6 @@
     [parameter(Mandatory,HelpMessage = 'This expects a Hashtable which contains AccountID as a minimum')][Hashtable]$Contact,
     [parameter(Mandatory,HelpMessage = 'This expects the output of the Get-SalesForceAuthenticationToken')][PSCustomObject]$Token
   )
-  If (-not ($Contact.AccountID))
-  {
-    Throw 'Account ID missing from Contact hashtable'
-  }
   If (-not ($Token.instance_url))
   {
     Throw 'instance_url Missing from Token'
@@ -56,7 +52,7 @@
 
     IF (-not($InvokeSalesForceAPIParams.APIURI)) 
     {
-      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v20.0/query/?q=SELECT FirstName,LastName,ID,AccountID from Contact Where {0} in (''{1}'')' -f $Key, $KeyValue)
+      $InvokeSalesForceAPIParams['APIURI']      = ('/services/data/v54.0/query/?q=SELECT FirstName,LastName,ID,AccountID from Contact Where {0} in (''{1}'')' -f $Key, $KeyValue)
     }
     Else 
     {

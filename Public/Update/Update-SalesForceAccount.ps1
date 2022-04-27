@@ -50,7 +50,7 @@
     $Body.Remove('AccountID') # Remove AccountID from hashtable as it cannot be included in Body.
     $InvokeSalesForceAPIParams = @{
         Token       = $Token
-        APIURI      = '/services/data/v20.0/sobjects/Account/'+$Account.AccountID
+        APIURI      = '/services/data/v54.0/sobjects/Account/'+$Account.AccountID
         APICALLType = 'Update'
         Body        = $Body
     }

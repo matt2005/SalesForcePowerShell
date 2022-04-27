@@ -50,7 +50,7 @@
     $Body.Remove('ContactID') # Remove ContactID from hashtable as it cannot be included in Body.
     $InvokeSalesForceAPIParams = @{
         Token       = $Token
-        APIURI      = '/services/data/v20.0/sobjects/Contact/'+$Contact.ContactID
+        APIURI      = '/services/data/v54.0/sobjects/Contact/'+$Contact.ContactID
         APICALLType = 'Update'
         Body        = $Body
     }
